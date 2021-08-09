@@ -9,14 +9,20 @@
             "type": "python",
             "request": "launch",
             "program": "${file}",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "env": {
+                "GOOGLE_APPLICATION_CREDENTIALS": "serviceAccountKey.json"
+            },
         },
         {
             "name": "Python: main File",
             "type": "python",
             "request": "launch",
             "program": "main.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "env": {
+                "GOOGLE_APPLICATION_CREDENTIALS": "serviceAccountKey.json"
+            },
         }
     ]
 }
