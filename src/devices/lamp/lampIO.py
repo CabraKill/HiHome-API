@@ -15,7 +15,7 @@ class LampIO(DeviceIO):
 
     def onChanged(self, col_snapshot, changes, read_time):
         current_state = self.getStateFromDocument(col_snapshot, changes, read_time)
-        if current_state:
+        if current_state == 'ON':
             self.turnOn()
         else:
             self.turnOff()
