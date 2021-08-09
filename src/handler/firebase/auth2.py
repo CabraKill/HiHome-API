@@ -21,9 +21,9 @@ credentials = service_account.Credentials.from_service_account_file(
 authed_session = AuthorizedSession(credentials)
 
 
-class FireThread(threading.Thread):
+class FireService(threading.Thread):
     def __init__(self):
-        super(FireThread, self).__init__()
+        super(FireService, self).__init__()
 
     def run(self):
         try:
