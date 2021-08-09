@@ -9,3 +9,6 @@ class DocumentFirebaseAPIModel(DocumentFirebaseEntity):
     def get(self, key: str):
         value = self.document.get(key)
         return value
+    
+    def update(self, fields: dict):
+        self.documentReference.update(fields)
