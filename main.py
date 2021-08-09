@@ -1,12 +1,16 @@
-from src.handler.firebase.firebaseHandler import FirebaseHandler
-from src.handler.firebase.auth2 import FireThread
+from src.service.firebase.firebaseService import FirebaseAPIService
 
-# firebase = FirebaseHandler()
-# result = firebase.getToken()
-# print(result)
+firebaseAPIService = FirebaseAPIService(project_name='home-dbb7e')
 
-fireThread = FireThread()
-fireThread.start()
-# fireThread.close()
-fireThread.join()
-print("done")
+
+def lamp(col_snapshot, changes, read_time):
+    for doc in col_snapshot:
+        print(f'{doc.id} - {doc.get("timee")}')
+
+
+firebaseAPIService.setActionForDocumentChange("configs/last", lamp)
+print('Press Ctrl+C to exit <3')
+while True:
+    pass
+
+print("Done")
