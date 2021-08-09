@@ -8,3 +8,7 @@ class DocumentFirebaseEntity(ABC):
     @abstractmethod
     def get(self, key:str):
         pass
+
+    
+    def update(self, fields: dict):
+        raise NotImplementedError()
