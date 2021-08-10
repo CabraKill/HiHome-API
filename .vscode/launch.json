@@ -10,13 +10,14 @@
             "request": "launch",
             "module": "flask",
             "env": {
-                "FLASK_APP": "main.py",
+                "FLASK_APP": "main:app",
                 "FLASK_ENV": "development",
                 "GOOGLE_APPLICATION_CREDENTIALS": "serviceAccountKey.json"
             },
             "args": [
                 "run",
-                "--no-debugger"
+                "--no-debugger",
+                //"--no-reload"
             ],
             "jinja": true
         },
