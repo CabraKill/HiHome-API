@@ -1,5 +1,6 @@
 from typing import Any, Callable, Generator
 from google.cloud.firestore_v1.base_document import DocumentSnapshot
+from google.cloud.firestore_v1.collection import CollectionReference
 from src.service.firebase.models.documentAPIModel import DocumentFirebaseAPIModel
 from src.service.firebase.models.documentEntity import DocumentFirebaseEntity
 from src.service.firebase.Ifirebase import IFirebase
@@ -18,8 +19,13 @@ class FirebaseAPIService(IFirebase):
     def getDb(self) -> Client:
         return super().getDb()
 
-    def getCollection(self, path: str) -> Generator[DocumentSnapshot, Any, None]:
+    def getCollection(self, path: str) -> CollectionReference:
+        collection = self.db.collection(path)
+        return collection
+    
+    def getDocumentCollection(self, path: str) -> Generator[Any, Any, None]:
         documents = self.db.collection(path).list_documents()
+        print(type(documents))
         return documents
 
     def getDocument(self, path: str) -> DocumentFirebaseEntity:
@@ -31,3 +37,8 @@ class FirebaseAPIService(IFirebase):
     def setActionForDocumentChange(self, path: str, function: Callable):
         document = self.db.document(path)  # .where(u'state', u'==', u'CA')
         query_watch = document.on_snapshot(function)
+    
+    def updateDocument(self, house_name:str, id:str, document: DocumentFirebaseEntity):
+        document_dict = document.toDict()
+        print(document_dict)
+        # self.db.collection(f'{house_name}/devices').add(document_dict)
