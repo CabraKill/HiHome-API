@@ -1,5 +1,4 @@
 from typing import Any, Callable, Generator
-
 from google.cloud.firestore_v1.base_document import DocumentSnapshot
 from src.service.firebase.models.documentAPIModel import DocumentFirebaseAPIModel
 from src.service.firebase.models.documentEntity import DocumentFirebaseEntity
