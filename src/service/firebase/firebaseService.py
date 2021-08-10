@@ -1,4 +1,6 @@
-from typing import Callable
+from typing import Any, Callable, Generator
+
+from google.cloud.firestore_v1.base_document import DocumentSnapshot
 from src.service.firebase.models.documentAPIModel import DocumentFirebaseAPIModel
 from src.service.firebase.models.documentEntity import DocumentFirebaseEntity
 from src.service.firebase.Ifirebase import IFirebase
@@ -17,8 +19,9 @@ class FirebaseAPIService(IFirebase):
     def getDb(self) -> Client:
         return super().getDb()
 
-    def getCollection(self, path: str):
-        return super().getCollection(path)
+    def getCollection(self, path: str) -> Generator[DocumentSnapshot, Any, None]:
+        documents = self.db.collection(path).list_documents()
+        return documents
 
     def getDocument(self, path: str) -> DocumentFirebaseEntity:
         documentReference = self.db.document(path)
