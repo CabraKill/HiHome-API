@@ -1,20 +1,16 @@
 from src.devices.lamp.lampIO import LampIO
 from src.service.firebase.Ifirebase import IFirebase
+from src import app
+from flask import request
 
 
 class DevicesController:
-    def __init__(self, firebaseService: IFirebase):
-        self.firebaseService = firebaseService
-        self.initDevices()
+    def __init__(self) -> None:
+        self.setEndpoints()
+    
+    def deviceInitialization(self):
+        body = request.json
+        return 'OK'
 
-    def initDevices(self):
-        self.homeList = self.firebaseService.getCollection('houses')
-        for home in self.homeList:
-            for device in home.collection('devices').list_documents():
-                device_fields = device.get(['type'])
-                device_type = device_fields.get('type')
-                if device_type == 'lamp':
-                    LampIO(device.path,self.firebaseService)
-
-    def listDevices(self):
-        pass
+    def setEndpoints(self):
+        app.add_url_rule('/init',view_func=self.deviceInitialization, methods=['POST'])
