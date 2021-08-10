@@ -9,6 +9,9 @@ class DocumentFirebaseEntity(ABC):
     def get(self, key:str):
         pass
 
-    
     def update(self, fields: dict):
         raise NotImplementedError()
+    
+    def toDict(self):
+        instance_dict = (self.__dict__)
+        return instance_dict
