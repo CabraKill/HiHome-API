@@ -8,7 +8,7 @@ class DevicesService:
         self.initDevices()
 
     def initDevices(self):
-        self.homeList = self.firebaseService.getCollection('houses')
+        self.homeList = self.firebaseService.getDocumentCollection('houses')
         for home in self.homeList:
             for device in home.collection('devices').list_documents():
                 device_fields = device.get(['type'])
