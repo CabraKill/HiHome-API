@@ -7,7 +7,7 @@ class DeviceInitializationEntity:
         self.ip = ip
 
     @classmethod
-    def fromJson(json: dict) -> DeviceInitializationEntity:
+    def fromJson(json: dict):
         deviceInitializationEntity = DeviceInitializationEntity(
             name=json['name'],
             state=json['state'],
