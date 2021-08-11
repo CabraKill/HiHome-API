@@ -17,7 +17,6 @@ class DevicesController:
             body_json)
         device = self.firebaseService.getCollection(
             f'houses/{self.home_name}/devices').where('mac', '==', deviceInitializationEntity.mac)
-        self.firebaseService.up
 
         return 'OK'
 
