@@ -1,11 +1,13 @@
 from abc import ABC, abstractmethod
+from src.connection.connectionClient import ConnectionClient
 from src.service.firebase.Ifirebase import IFirebase
 
 
 class DeviceIO(ABC):
-    def __init__(self, db_path: str, firebaseService: IFirebase):
+    def __init__(self, db_path: str, firebaseService: IFirebase, connectionClient: ConnectionClient):
         self.db_path = db_path
         self.firebaseService = firebaseService
+        self.connectionClient = connectionClient
         self.configureFireBase()
 
     def configureFireBase(self):
