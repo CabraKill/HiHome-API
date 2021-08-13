@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/Firestore-orange"> <img src="https://img.shields.io/badge/Flask-black">
+<img src="https://img.shields.io/badge/Firestore-orange"> <img src="https://img.shields.io/badge/Flask-white">
 # HiHome
 HiHome is a home automation system.
 
