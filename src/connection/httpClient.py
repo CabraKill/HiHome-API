@@ -8,5 +8,5 @@ class HttpClient(Client):
     def get(self, url: str):
         response = get(url, timeout=20)
         responseModel = ResponseModel(
-            response.status_code, response.content.decode('utf-8'))
+            response.status_code, response.text)
         return responseModel

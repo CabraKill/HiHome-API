@@ -10,20 +10,20 @@ class LampIO(DeviceIO):
 
     def turnOn(self, link: str):
         try:
-            response = self.connectionClient.get(link+'/on')
-            print(response)
+            response = self.connectionClient.get(link+'/RELAY=OFF')
+            print("Response: " + response.body)
             print('lamp turned on')
         except Exception as e:
             print(e)
 
     def turnOff(self, link: str):
         try:
-            response = self.connectionClient.get(link+'/off')
-            print(response)
+            response = self.connectionClient.get(link+'/RELAY=ON')
+            print("Response: " + response.body)
             print('lamp turned off')
         except Exception as e:
             print(e)
-            
+
     def onChanged(self, col_snapshot, changes, read_time):
         current_state = self.getStateFromDocument(
             col_snapshot, changes, read_time)

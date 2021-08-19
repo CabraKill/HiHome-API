@@ -1,3 +1,4 @@
+from src.connection.models.responseModel import ResponseModel
 from requests.models import Response
 from src.connection.client import Client
 
@@ -12,7 +13,8 @@ class ConnectionClient:
     
     def handleConnectionStatus(self, response: Response):
         if response.status_code == 200:
-            return response
+            responseModel = ResponseModel(response.status_code, response.body)
+            return responseModel
         if response.status_code == 404:
             raise "not found"
         if response.status_code == 500:
