@@ -12,4 +12,8 @@ firebaseAPIService = FirebaseAPIService(project_name=HOME_NAME)
 deviceService = DevicesService(firebaseAPIService)
 devicesController = DevicesController(home_name=HOME_NAME,firebaseService=firebaseAPIService)
 
+@app.route('/')
+def home():
+  return 'oi'
+
 print('Press Ctrl+C to exit <3')
