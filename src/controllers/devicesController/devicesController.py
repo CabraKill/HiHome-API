@@ -15,10 +15,10 @@ class DevicesController:
         body_json = request.json
         deviceInitializationEntity = DeviceInitializationEntity.fromJson(
             body_json)
-        devices = self.firebaseService.getCollection(
-            f'houses/{self.home_name}/devices').where('mac', '==', deviceInitializationEntity.mac)
-        device = devices[0] if len(devices) > 0 else None
-        return device.id if device else "error" 
+        device = self.firebaseService.getDocument(
+            f'houses/{self.home_name}/devices/{deviceInitializationEntity.mac}')
+        json_map = device.get(['state'])
+        return json_map.get('state') if device else "error" 
 
     def setEndpoints(self):
         app.add_url_rule(
