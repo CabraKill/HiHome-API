@@ -18,8 +18,18 @@ class DevicesController:
         device = self.firebaseService.getDocument(
             f'houses/{self.home_name}/devices/{deviceInitializationEntity.mac}')
         json_map = device.get(['state'])
-        return json_map.get('state') if device else "error" 
+        return json_map.get('state') if device else "error"
+
+    def getState(self, home: str, mac: str):
+        print(f"endpoint: getState - home:{home} - mac:{mac}")
+        device = self.firebaseService.getDocument(
+            f'houses/{home}/devices/{mac}')
+        json_map = device.get(['state'])
+        state = json_map.get('state')
+        return state if state else "off"
 
     def setEndpoints(self):
         app.add_url_rule(
             '/init', view_func=self.deviceInitialization, methods=['POST'])
+        app.add_url_rule(
+            '/homes/<string:home>/devices/<string:mac>', view_func=self.getState, methods=['GET'])
