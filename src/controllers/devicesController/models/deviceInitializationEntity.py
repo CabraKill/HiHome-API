@@ -6,7 +6,7 @@ class DeviceInitializationEntity:
         self.mac = mac
         self.ip = ip
 
-    @classmethod
+    @staticmethod
     def fromJson(json: dict):
         deviceInitializationEntity = DeviceInitializationEntity(
             name=json['name'],
