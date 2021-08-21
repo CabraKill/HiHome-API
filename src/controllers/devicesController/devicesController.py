@@ -3,6 +3,7 @@ from src.devices.lamp.lampIO import LampIO
 from src.service.firebase.Ifirebase import IFirebase
 from src import app
 from flask import request
+import json
 
 
 class DevicesController:
@@ -27,9 +28,21 @@ class DevicesController:
         json_map = device.get(['state'])
         state = json_map.get('state')
         return state if state else "off"
+    
+    def switchState(self, home: str, mac: str):
+        device = self.firebaseService.getDocumentReference(
+            f'houses/{home}/devices/{mac}')
+        json_map = device.get(['state'])
+        state = json_map.get('state')
+        newState = 'on' if state == 'off' else 'off'
+        new_map = {'state': newState}
+        device.set(new_map)
+        return json.dumps(new_map)
 
     def setEndpoints(self):
         app.add_url_rule(
             '/init', view_func=self.deviceInitialization, methods=['POST'])
         app.add_url_rule(
             '/homes/<string:home>/devices/<string:mac>', view_func=self.getState, methods=['GET'])
+        app.add_url_rule(
+            '/homes/<string:home>/devices/<string:mac>/switch', view_func=self.switchState, methods=['GET'])
