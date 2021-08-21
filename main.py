@@ -4,13 +4,13 @@ from src.controllers.devicesController.devicesController import DevicesControlle
 from src.devices.lamp.lampIO import LampIO
 from src.service.firebase.firebaseService import FirebaseAPIService
 
-HOME_NAME = 'home-dbb7e'
+PROJECT_NAME = 'home-dbb7e'
 
 
-firebaseAPIService = FirebaseAPIService(project_name=HOME_NAME)
+firebaseAPIService = FirebaseAPIService(project_name=PROJECT_NAME)
 
-deviceService = DevicesService(firebaseAPIService)
-devicesController = DevicesController(home_name=HOME_NAME,firebaseService=firebaseAPIService)
+# deviceService = DevicesService(firebaseAPIService)
+devicesController = DevicesController(home_name='buHkimoPE1e5NMx7C4kX',firebaseService=firebaseAPIService)
 
 @app.route('/')
 def home():
