@@ -27,12 +27,18 @@ class FirebaseAPIService(IFirebase):
         documents = self.db.collection(path).list_documents()
         print(type(documents))
         return documents
+        
+    def getDocumentReference(self, path: str) -> DocumentFirebaseEntity:
+        documentReference = self.db.document(path)
+        return documentReference
 
     def getDocument(self, path: str) -> DocumentFirebaseEntity:
         documentReference = self.db.document(path)
         document = DocumentFirebaseAPIModel(
             documentReference=documentReference)
         return document
+
+
 
     def setActionForDocumentChange(self, path: str, function: Callable):
         document = self.db.document(path)  # .where(u'state', u'==', u'CA')

@@ -23,6 +23,10 @@ class IFirebase(ABC):
         pass
 
     @abstractmethod
+    def getDocumentReference(self, path: str) -> DocumentReference:
+        pass
+
+    @abstractmethod
     def getCollection(self, path: str) -> CollectionReference:
         pass
 
